@@ -25,18 +25,40 @@ class GenJet : public Jet {
 public:
   struct Specific {
     Specific () :
+
+      m_ChEmEnergy (0),
+      m_NeEmEnergy (0),
       m_EmEnergy (0),
+
+         m_ChHadEnergy (0),
+         m_NeHadEnergy (0),
 	 m_HadEnergy (0),
+
+         m_MuEnergy (0),
 	 m_InvisibleEnergy (0),
+
 	 m_AuxiliaryEnergy (0) {}
 
-    /// Energy of EM particles
+    /* Energy of charged EM particles */
+    float m_ChEmEnergy;
+    /* Energy of neutral EM particles */
+    float m_NeEmEnergy;
+    /* Energy of EM particles */
     float m_EmEnergy;
-    /// Energy of Hadrons
+
+    /* Energy of charged Hadrons */
+    float m_ChHadEnergy;
+    /* Energy of neutral Hadrons */
+    float m_NeHadEnergy;
+    /* Energy of Hadrons */
     float m_HadEnergy;
-    /// Invisible energy (mu, nu, ...)
+
+    /* Energy of Muons */
+    float m_MuEnergy;
+    /* Invisible energy (mu, nu, ...) */
     float m_InvisibleEnergy;
-    /// Anything else (undecayed Sigmas etc.)
+
+    /* Anything else (undecayed Sigmas etc.) */
     float m_AuxiliaryEnergy;
   };
 
@@ -53,12 +75,28 @@ public:
 	 const Jet::Constituents& fConstituents);
 
   virtual ~GenJet() {};
+
+  /** Returns energy of all charged electromagnetic particles*/
+  float chEmEnergy() const {return m_specific.m_ChEmEnergy;};
+
+  /** Returns energy of neutral electromagnetic particles*/
+  float neEmEnergy() const {return m_specific.m_NeEmEnergy;};
   /** Returns energy of electromagnetic particles*/
   float emEnergy() const {return m_specific.m_EmEnergy;};
+
+
+  /** Returns energy of charged hadronic particles*/
+  float chHadEnergy() const {return m_specific.m_ChHadEnergy;};
+  /** Returns energy of neutral hadronic particles*/
+  float neHadEnergy() const {return m_specific.m_NeHadEnergy;};
   /** Returns energy of hadronic particles*/
   float hadEnergy() const {return m_specific.m_HadEnergy;};
+
+  /** Returns energy of Muon*/
+  float muEnergy() const {return m_specific.m_MuEnergy;};
   /** Returns invisible energy*/
   float invisibleEnergy() const {return m_specific.m_InvisibleEnergy;};
+
   /** Returns other energy (undecayed Sigmas etc.)*/
   float auxiliaryEnergy() const {return m_specific.m_AuxiliaryEnergy;};
 
